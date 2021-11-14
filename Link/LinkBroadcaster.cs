@@ -1,12 +1,8 @@
 ﻿using CatCore;
-using CatCore.Models.Shared;
-using CatCore.Models.Twitch;
 using CatCore.Models.Twitch.IRC;
-using CatCore.Services.Interfaces;
 using CatCore.Services.Twitch.Interfaces;
 using SiraUtil.Logging;
 using System;
-using System.Linq;
 using Zenject;
 
 namespace Link
