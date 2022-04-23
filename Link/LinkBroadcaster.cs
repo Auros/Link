@@ -1,8 +1,8 @@
-﻿using CatCore;
+using System;
+using CatCore;
 using CatCore.Models.Twitch.IRC;
 using CatCore.Services.Twitch.Interfaces;
 using SiraUtil.Logging;
-using System;
 using Zenject;
 
 namespace Link
@@ -13,6 +13,7 @@ namespace Link
         private readonly ISongLinkManager _songLinkManager;
         private readonly CatCoreInstance _chatCoreInstance;
         private readonly IBeatmapStateManager _beatmapStateManager;
+
         private ITwitchService? _chatService;
 
         public LinkBroadcaster(SiraLog siraLog, ISongLinkManager songLinkManager, IBeatmapStateManager beatmapStateManager)
@@ -26,6 +27,7 @@ namespace Link
         public void Initialize()
         {
             _chatService = _chatCoreInstance.RunTwitchServices();
+            _chatService.OnTextMessageReceived -= ChatService_OnTextMessageReceived;
             _chatService.OnTextMessageReceived += ChatService_OnTextMessageReceived;
         }
 
@@ -67,7 +69,10 @@ namespace Link
         public void Dispose()
         {
             if (_chatService != null)
+            {
                 _chatService.OnTextMessageReceived -= ChatService_OnTextMessageReceived;
+                _chatService = null;
+            }
 
             _chatCoreInstance.StopAllServices();
         }
