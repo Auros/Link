@@ -1,6 +1,6 @@
 ﻿using IPA;
+using IPA.Logging;
 using SiraUtil.Zenject;
-using IPALogger = IPA.Logging.Logger;
 
 namespace Link
 {
@@ -8,16 +8,16 @@ namespace Link
     public class Plugin
     {
         [Init]
-        public Plugin(IPALogger logger, Zenjector zenjector)
+        public Plugin(Logger logger, Zenjector zenjector)
         {
             zenjector.UseLogger(logger);
-            zenjector.Install(Location.App, Container =>
+            zenjector.Install(Location.App, container =>
             {
-                Container.BindInterfacesTo<LinkBroadcaster>().AsSingle();
-                Container.BindInterfacesTo<SongLinkManager>().AsSingle();
-                Container.BindInterfacesTo<BeatmapStateManager>().AsSingle();
+                container.BindInterfacesTo<LinkBroadcaster>().AsSingle();
+                container.BindInterfacesTo<SongLinkManager>().AsSingle();
+                container.BindInterfacesTo<BeatmapStateManager>().AsSingle();
             });
-            zenjector.Install(Location.Player, Container => Container.BindInterfacesTo<BeatmapCollector>().AsSingle());
+            zenjector.Install(Location.Player, container => container.BindInterfacesTo<BeatmapCollector>().AsSingle());
         }
     }
 }
