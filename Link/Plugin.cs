@@ -11,11 +11,11 @@ namespace Link
         public Plugin(Logger logger, Zenjector zenjector)
         {
             zenjector.UseLogger(logger);
-            zenjector.Install(Location.App, container =>
+            zenjector.Install(Location.App, Container =>
             {
-                container.BindInterfacesTo<LinkBroadcaster>().AsSingle();
-                container.BindInterfacesTo<SongLinkManager>().AsSingle();
-                container.BindInterfacesTo<BeatmapStateManager>().AsSingle();
+                Container.BindInterfacesTo<LinkBroadcaster>().AsSingle();
+                Container.BindInterfacesTo<SongLinkManager>().AsSingle();
+                Container.BindInterfacesTo<BeatmapStateManager>().AsSingle();
             });
             zenjector.Install(Location.Player, container => container.BindInterfacesTo<BeatmapCollector>().AsSingle());
         }

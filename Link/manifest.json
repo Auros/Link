@@ -3,9 +3,9 @@
   "id": "Link",
   "name": "Link",
   "author": "Auros",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Adds a !link command to your stream which posts the BeatSaver link to the actively played map in your chat.",
-  "gameVersion": "1.20.0",
+  "gameVersion": "1.21.0",
   "dependsOn": {
     "BSIPA": "^4.2.0",
     "CatCore": "^1.0.0",
